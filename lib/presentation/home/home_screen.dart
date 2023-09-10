@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../bag/bag_screen.dart';
@@ -14,7 +13,7 @@ class HomeScreen extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-           backgroundColor: myGreenColor,
+        backgroundColor: myGreenColor,
         appBar: AppBar(
           title: Image.asset("assets/icons/zappy_logo.png"),
           actions: const [
