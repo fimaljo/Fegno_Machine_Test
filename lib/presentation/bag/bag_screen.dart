@@ -1,3 +1,4 @@
+import 'package:fegno_machine_test/presentation/bag/success_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -442,7 +443,11 @@ class _BagScreenState extends State<BagScreen> {
                                 text: "Place Order",
                                 textColor: Colors.white,
                                 color: myGreenColor,
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => SuccessScreen(),
+                                  ));
+                                },
                               ),
                             ],
                           )
