@@ -33,6 +33,7 @@ final class CoupenSkiped extends CartEvent {
   @override
   List<Object> get props => [];
 }
+
 final class TakeAwaySelected extends CartEvent {
   final bool data;
 
@@ -43,6 +44,18 @@ final class TakeAwaySelected extends CartEvent {
   @override
   List<Object> get props => [];
 }
+
+final class AddInstruction extends CartEvent {
+  final bool data;
+
+  const AddInstruction(
+    this.data,
+  );
+
+  @override
+  List<Object> get props => [];
+}
+
 final class CartItemAdded extends CartEvent {
   const CartItemAdded(
     this.item,

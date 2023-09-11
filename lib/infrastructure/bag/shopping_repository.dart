@@ -25,11 +25,12 @@ class ShoppingRepository {
     Coupon(1, 40, 0)
   ];
   final _discount = <Discount>[];
-  final _groupValue = <GroupValue>[GroupValue(false, false)];
+  final _groupValue = <GroupValue>[GroupValue(false, false,false)];
   final _timeSlots = <TimeSlot>[
     TimeSlot("10 am to 12 pm", false),
     TimeSlot("12 am to 2 pm", false),
     TimeSlot("2 am to 4 pm", false),
+  
   ];
   Future<List<Item>> loadCartItems() => Future.delayed(_delay, () => _items);
 

@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-
 import 'package:meta/meta.dart';
 
 import '../../../domain/bag/model/cart.dart';
@@ -23,6 +22,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<TimeSloteAdded>(_onTimeSloteAdded);
     on<CoupenSkiped>(_onCoupenSkiped);
     on<TakeAwaySelected>(_onTakeAwaySelected);
+    on<AddInstruction>(_onAddInstructionSelected);
   }
 
   final ShoppingRepository shoppingRepository;
@@ -57,13 +57,10 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     final state = this.state;
     if (state is CartLoaded) {
       try {
-       
         final index = state.cart.items.indexOf(event.item);
         if (index != -1) {
           state.cart.items[index].count = state.cart.items[index].count + 1;
         }
-
-      
 
         emit(CartLoading());
         emit(CartLoaded(cart: state.cart));
@@ -80,7 +77,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     final state = this.state;
     if (state is CartLoaded) {
       try {
-       
         final index = state.cart.timeSlots.indexOf(event.item);
         if (index != -1) {
           state.cart.timeSlots[index].selectedTimeZone = true;
@@ -89,7 +85,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         emit(CartLoading());
         emit(CartLoaded(cart: state.cart));
       } catch (e) {
-       
         emit(CartError());
       }
     }
@@ -119,7 +114,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           ),
         );
       } catch (e) {
-      
         emit(CartError());
       }
     }
@@ -155,6 +149,25 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     if (state is CartLoaded) {
       try {
         state.cart.groupBoolValue[0].couponSkiped = event.data;
+
+        emit(CartLoading());
+        emit(
+          CartLoaded(cart: state.cart),
+        );
+      } catch (e) {
+        emit(CartError());
+      }
+    }
+  }
+
+  Future<void> _onAddInstructionSelected(
+    AddInstruction event,
+    Emitter<CartState> emit,
+  ) async {
+    final state = this.state;
+    if (state is CartLoaded) {
+      try {
+        state.cart.groupBoolValue[0].addInstruction = event.data;
 
         emit(CartLoading());
         emit(
